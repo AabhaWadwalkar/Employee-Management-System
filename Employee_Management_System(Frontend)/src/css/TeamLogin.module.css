@@ -1,0 +1,733 @@
+/* 
+        :root {
+            --black: #111827;
+            --dark-grey: #1f2937;
+            --medium-grey: #374151;
+            --light-grey: #6b7280;
+            --lighter-grey: #9ca3af;
+            --lightest-grey: #e5e7eb;
+            --white: #f9fafb;
+            --accent: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+
+        body {
+            background-color: var(--black);
+            color: var(--white);
+            min-height: 100vh;
+        }
+
+        .team-login-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: var(--dark-grey);
+            border-radius: 12px;
+            border: 1px solid var(--medium-grey);
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            margin-top: 12px;
+        }
+
+        .team-header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--medium-grey);
+        }
+
+        .team-title {
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .team-subtitle {
+            color: var(--lighter-grey);
+            font-size: 1rem;
+        }
+
+  
+
+        .team-info {
+            background-color: var(--black);
+            border-radius: 8px;
+            border: 1px solid var(--medium-grey);
+            padding: 25px;
+        }
+
+        .info-group {
+            margin-bottom: 20px;
+        }
+
+        .info-label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--lighter-grey);
+            font-size: 0.9rem;
+        }
+
+        .info-value {
+            padding: 12px 15px;
+            background-color: var(--dark-grey);
+            border-radius: 6px;
+            border: 1px solid var(--medium-grey);
+        }
+
+        .team-members {
+            margin-top: -1px;
+            background-color: var(--black);
+            padding: 38px;
+            border-radius: 8px;
+            border: 1px solid var(--medium-grey);
+        }
+
+        .members-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--medium-grey);
+        }
+
+        .member-item {
+            display: flex;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .member-item:last-child {
+            border-bottom: none;
+        }
+
+        .member-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            margin-right: 15px;
+            object-fit: cover;
+            border: 2px solid var(--medium-grey);
+        }
+
+        .member-name {
+            font-weight: 500;
+        }
+
+        .member-role {
+            font-size: 20px;
+            color: var(--light-grey);
+            margin-right: 10px;
+        }
+
+        .login-form {
+            background-color: var(--black);
+            border-radius: 8px;
+            border: 1px solid var(--medium-grey);
+            padding: 25px;
+        }
+
+        .form-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--lighter-grey);
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 14px 16px;
+            background-color: var(--dark-grey);
+            border: 1px solid var(--medium-grey);
+            border-radius: 6px;
+            color: var(--white);
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--light-grey);
+            box-shadow: 0 0 0 3px rgba(156, 163, 175, 0.1);
+        }
+
+        .btn-submit {
+            background-color: var(--medium-grey);
+            color: var(--white);
+            border: none;
+            padding: 14px 24px;
+            border-radius: 6px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        .btn-submit:hover {
+            background-color: var(--light-grey);
+        }
+
+        .status-badge {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+
+        .badge-success {
+            background-color: rgba(16, 185, 129, 0.15);
+            color: #10b981;
+        }
+
+        @media (max-width: 992px) {
+            .team-content {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 576px) {
+            body {
+                padding: 1rem;
+            }
+
+            .team-login-container {
+                padding: 20px;
+            }
+        }
+        .Form.Label{
+            color: black;
+        }
+ */
+
+ /* --- Color Variables (from your theme) --- */
+:root {
+    --black: #111827;
+    --dark-grey: #1f2937;
+    --medium-grey: #374151;
+    --light-grey: #6b7280;
+    --lighter-grey: #9ca3af;
+    --lightest-grey: #e5e7eb;
+    --white: #f9fafb;
+    --accent: #ffffff; /* Used for highlights */
+    --success-green: #10b981; /* For active status/success actions */
+    --primary-blue: #3b82f6; /* A subtle blue for primary actions/highlights */
+}
+
+/* --- Base Styles --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+body {
+    /* background-color: var(--black); */
+    color: var(--white);
+    min-height: 100vh;
+}
+
+/* --- Main Container & Wrapper --- */
+.team-login-wrapper {
+    padding: 2rem; /* Overall padding around the entire component */
+}
+
+.team-login-container {
+    max-width: 1400px; /* Wider container for more space */
+    margin: 0 auto;
+    /* background-color: var(--dark-grey); */
+    border-radius: 12px;
+    border: 1px solid var(--medium-grey);
+    padding: 30px;
+    /* box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3); */
+    box-shadow: 0 8px 30px rgba(177, 173, 173, 0.3);
+    animation: fadeIn 0.5s ease-out forwards; /* Fade in animation for the whole container */
+}
+
+/* --- Header Section --- */
+.team-header {
+    text-align: center;
+    margin-bottom: 40px; /* More space below header */
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--medium-grey);
+    position: relative; /* For logout button positioning */
+}
+
+.team-title {
+    font-size: 2.5rem; /* Larger, more impactful title */
+    font-weight: 700;
+    margin-bottom: 8px;
+    color: var(--white);
+    letter-spacing: -0.5px;
+}
+
+.team-subtitle {
+    color: var(--lighter-grey);
+    font-size: 1.1rem;
+}
+
+.logout-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    /* background-color: var(--medium-grey); */
+    background: linear-gradient(grey,gray);
+    color: var(--white);
+    border: none;
+    padding: 8px 15px;
+    border-radius: 8px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 0.9rem;
+}
+
+.logout-btn:hover {
+    background-color: var(--light-grey);
+    transform: translateY(-2px);
+}
+
+/* --- Main Content Layout --- */
+.team-content {
+    display: flex; /* Use flexbox for main columns */
+    flex-wrap: wrap; /* Allow wrapping */
+    gap: 30px; /* Space between columns */
+}
+
+/* --- Card Base Styles (for Team Info and Members List) --- */
+.info-card,
+.members-list-card {
+    /* background-color: var(--black);  */
+    border-radius: 12px; /* Slightly larger border-radius */
+    border: 1px solid var(--medium-grey);
+    padding: 30px; /* More internal padding */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    flex: 1; /* Allow cards to grow/shrink */
+    min-width: 300px; /* Minimum width before stacking */
+    animation: slideInUp 0.6s ease-out forwards; /* Animation for cards */
+}
+
+.info-card {
+    flex: 0 0 calc(40% - 15px); /* Info card takes about 40% width */
+    max-width: calc(40% - 15px);
+    animation-delay: 0.1s;
+}
+
+.members-list-card {
+    flex: 0 0 calc(60% - 15px); /* Members list takes about 60% width */
+    max-width: calc(60% - 15px);
+    animation-delay: 0.2s;
+}
+
+.card-section-title {
+    font-size: 1.8rem; /* Prominent title for sections */
+    font-weight: 600;
+    margin-bottom: 25px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid var(--medium-grey);
+    color: var(--white);
+}
+
+/* --- Team Info Specific Styles --- */
+.info-group {
+    margin-bottom: 20px;
+}
+
+.info-label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+    color: var(--lighter-grey);
+    font-size: 0.95rem;
+}
+
+.info-value {
+    padding: 12px 15px;
+    /* background-color: var(--dark-grey); */
+    border-radius: 8px; /* Slightly larger border-radius for inputs */
+    border: 1px solid var(--medium-grey);
+    color: var(--white);
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+}
+
+.info-value:hover {
+    border-color: var(--light-grey);
+}
+
+.status-badge {
+    display: inline-block;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    background-color: rgba(16, 185, 129, 0.15); /* Using success-green with transparency */
+    color: var(--success-green);
+    box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.2); /* Subtle glow */
+}
+
+/* --- Team Members List Specific Styles --- */
+.members-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Responsive grid for members */
+    gap: 20px; /* Space between member cards */
+}
+
+.member-card {
+    /* background-color: var(--dark-grey);  */
+    border-radius: 10px;
+    border: 1px solid var(--medium-grey);
+    padding: 20px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Push button to bottom */
+}
+
+.member-card:hover {
+    transform: translateY(-5px); /* Lift effect on hover */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    border-color: var(--light-grey);
+}
+
+.member-header-section {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.member-avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid var(--light-grey);
+    margin-right: 15px;
+    flex-shrink: 0; /* Prevent shrinking */
+}
+
+.member-name-role {
+    flex-grow: 1;
+}
+
+.member-name {
+    font-weight: 600;
+    font-size: 1.1rem;
+    color: var(--white);
+}
+
+.member-role {
+    font-size: 0.9rem;
+    color: var(--white);
+}
+
+.member-details-section {
+    margin-bottom: 20px;
+}
+
+.detail-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+    font-size: 0.95rem;
+}
+
+.detail-label {
+    color: var(--white);
+    font-weight: 400;
+}
+
+.detail-value {
+    color: var(--white);
+    font-weight: 500;
+}
+
+.detail-value-highlight {
+    color: var(--primary-blue); /* Highlight task count with a subtle blue */
+    font-weight: 600;
+}
+
+.assign-task-btn {
+    width: 100%;
+    /* background-color: var(--medium-grey); */
+    background: linear-gradient(grey,gray);
+    color: var(--white);
+    border: none;
+    padding: 10px 15px;
+    border-radius: 8px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 0.95rem;
+    margin-top: auto; /* Pushes button to the bottom of the flex container */
+}
+
+.assign-task-btn:hover {
+    background-color: var(--light-grey);
+    transform: translateY(-2px);
+}
+
+.no-members-message {
+    grid-column: 1 / -1; /* Span across all columns */
+    text-align: center;
+    color: var(--lighter-grey);
+    padding: 40px;
+    font-style: italic;
+    background-color: var(--dark-grey);
+    border-radius: 10px;
+    border: 1px solid var(--medium-grey);
+}
+
+/* --- Info Message for Missing Data --- */
+.info-message-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 80vh;
+    text-align: center;
+    padding: 2rem;
+}
+
+.info-message {
+    background-color: var(--dark-grey);
+    border: 1px solid var(--medium-grey);
+    border-radius: 12px;
+    padding: 40px;
+    font-size: 1.2rem;
+    color: var(--lighter-grey);
+    max-width: 600px;
+    margin-bottom: 20px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.back-home-btn {
+    background-color: var(--medium-grey) !important;
+    border-color: var(--medium-grey) !important;
+    color: var(--white) !important;
+    padding: 12px 25px;
+    border-radius: 8px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.back-home-btn:hover {
+    background-color: var(--light-grey) !important;
+    border-color: var(--light-grey) !important;
+    transform: translateY(-2px);
+}
+
+/* --- Modal Styling (Bootstrap Overrides) --- */
+.custom-modal .modal-content {
+    background-color: var(--dark-grey);
+    border: 1px solid var(--medium-grey);
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+}
+
+.modal-header {
+    border-bottom: 1px solid var(--medium-grey);
+    padding: 15px 25px;
+}
+
+.modal-title {
+    color: var(--black);
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.modal-header .btn-close {
+    filter: invert(1); /* Makes the close button white */
+    opacity: 0.7;
+}
+
+.modal-header .btn-close:hover {
+    opacity: 1;
+}
+
+.modal-body {
+    padding: 25px;
+}
+
+.form-label {
+    /* color: var(--lighter-grey) !important; Override Bootstrap default */
+    font-weight: 500;
+    margin-bottom: 8px;
+}
+
+.form-control {
+    /* background-color: var(--black) !important;  */
+    border: 1px solid var(--medium-grey) !important;
+    color: var(--black) !important;
+    padding: 10px 15px;
+    border-radius: 8px; /* Consistent border-radius */
+}
+
+.form-control:focus {
+    border-color: var(--primary-blue) !important; /* Blue focus border */
+    box-shadow: 0 0 0 0.25rem rgba(59, 130, 246, 0.25) !important; /* Blue focus shadow */
+}
+
+.modal-footer {
+    border-top: 1px solid var(--medium-grey);
+    padding: 15px 25px;
+    justify-content: flex-end;
+}
+
+.btn-secondary {
+    background-color: var(--medium-grey) !important;
+    border-color: var(--medium-grey) !important;
+    color: var(--white) !important;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
+
+.btn-secondary:hover {
+    background-color: var(--light-grey) !important;
+    border-color: var(--light-grey) !important;
+}
+
+.btn-primary { /* For Assign button */
+    background-color: var(--primary-blue) !important;
+    border-color: var(--primary-blue) !important;
+    color: var(--white) !important;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: all 0.2s ease;
+}
+
+.btn-primary:hover {
+    background-color: #2563eb !important; /* Slightly darker blue on hover */
+    border-color: #2563eb !important;
+}
+
+/* --- Animations --- */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideInUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* --- Responsive Styles --- */
+@media (max-width: 1200px) {
+    .info-card,
+    .members-list-card {
+        flex: 0 0 calc(50% - 15px); /* Adjust to 50% width on smaller large screens */
+        max-width: calc(50% - 15px);
+    }
+}
+
+@media (max-width: 992px) {
+    .team-content {
+        flex-direction: column; /* Stack columns on medium screens */
+        gap: 20px;
+    }
+    .info-card,
+    .members-list-card {
+        flex: 1 1 100%; /* Take full width */
+        max-width: 100%;
+    }
+    .team-header {
+        text-align: left; /* Align header text left on smaller screens */
+        padding-right: 100px; /* Make space for logout button */
+    }
+    .logout-btn {
+        top: 20px;
+        right: 20px;
+    }
+}
+
+@media (max-width: 768px) {
+    .team-login-wrapper {
+        padding: 1rem;
+    }
+    .team-login-container {
+        padding: 20px;
+    }
+    .team-title {
+        font-size: 2rem;
+    }
+    .card-section-title {
+        font-size: 1.5rem;
+    }
+    .members-grid {
+        grid-template-columns: 1fr; /* Stack member cards on small screens */
+    }
+    .member-card {
+        padding: 15px;
+    }
+    .member-avatar {
+        width: 45px;
+        height: 45px;
+    }
+    .member-name {
+        font-size: 1rem;
+    }
+    .member-role {
+        font-size: 0.8rem;
+    }
+    .detail-item {
+        font-size: 0.9rem;
+    }
+    .assign-task-btn {
+        font-size: 0.9rem;
+        padding: 8px 12px;
+    }
+}
+
+@media (max-width: 480px) {
+    .team-title {
+        font-size: 1.8rem;
+    }
+    .team-subtitle {
+        font-size: 1rem;
+    }
+    .logout-btn {
+        padding: 6px 10px;
+        font-size: 0.8rem;
+    }
+    .info-group {
+        margin-bottom: 15px;
+    }
+    .info-value {
+        padding: 10px 12px;
+    }
+    .modal-title {
+        font-size: 1.3rem;
+    }
+    .modal-body {
+        padding: 20px;
+    }
+    .btn-secondary, .btn-primary {
+        padding: 8px 15px;
+        font-size: 0.9rem;
+    }
+}

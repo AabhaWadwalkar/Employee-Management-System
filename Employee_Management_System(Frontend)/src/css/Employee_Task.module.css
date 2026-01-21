@@ -1,0 +1,780 @@
+/* 
+        :root {
+            --black: #111827;
+            --dark-grey: #1f2937;
+            --medium-grey: #374151;
+            --light-grey: #6b7280;
+            --lighter-grey: #9ca3af;
+            --lightest-grey: #e5e7eb;
+            --white: #f9fafb;
+            --accent: #ffffff;
+            --hover-bg: rgba(255, 255, 255, 0.05);
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+
+        body {
+            background-color: var(--black);
+            color: var(--white);
+            min-height: 100vh;
+        }
+
+        .employee-task-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .employee-header {
+            background-color: var(--dark-grey);
+            border-radius: 12px;
+            border: 1px solid var(--medium-grey);
+            padding: 25px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .employee-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .info-item {
+            margin-bottom: 15px;
+        }
+
+        .info-label {
+            display: block;
+            margin-bottom: 6px;
+            font-weight: 500;
+            color: var(--lighter-grey);
+            font-size: 0.9rem;
+        }
+
+        .info-value {
+            background-color: var(--black);
+            border: 1px solid var(--medium-grey);
+            border-radius: 6px;
+            padding: 12px 15px;
+            color: var(--white);
+            word-break: break-word;
+        }
+
+        .tasks-section {
+            margin-top: 30px;
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--medium-grey);
+        }
+
+        .task-list {
+            display: grid;
+            gap: 20px;
+        }
+
+        .task-card {
+            background-color: var(--dark-grey);
+            border-radius: 12px;
+            border: 1px solid var(--medium-grey);
+            padding: 20px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .task-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        .task-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--medium-grey);
+        }
+
+        .task-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .task-status {
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            text-transform: capitalize;
+        }
+
+        .status-pending {
+            background-color: rgba(245, 158, 11, 0.15);
+            color: var(--warning);
+        }
+
+        .status-completed {
+            background-color: rgba(16, 185, 129, 0.15);
+            color: var(--success);
+        }
+
+        .status-overdue {
+            background-color: rgba(239, 68, 68, 0.15);
+            color: var(--danger);
+        }
+
+        .task-details {
+            margin-bottom: 15px;
+            color: var(--lighter-grey);
+            line-height: 1.6;
+        }
+
+        .task-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 15px;
+            padding-top: 10px;
+            border-top: 1px solid var(--medium-grey);
+            font-size: 0.9rem;
+        }
+
+        .task-date {
+            color: var(--lighter-grey);
+        }
+
+        .task-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .task-btn {
+            padding: 8px 15px;
+            border-radius: 6px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+            font-size: 0.85rem;
+        }
+
+        .btn-complete {
+            background-color: var(--success);
+            color: var(--white);
+        }
+
+        .btn-complete:hover {
+            background-color: #0d9f6e;
+        }
+
+        .btn-edit {
+            background-color: var(--medium-grey);
+            color: var(--white);
+        }
+
+        .btn-edit:hover {
+            background-color: var(--light-grey);
+        }
+
+        .no-tasks {
+            background-color: var(--dark-grey);
+            border-radius: 12px;
+            border: 1px solid var(--medium-grey);
+            padding: 40px;
+            text-align: center;
+            color: var(--lighter-grey);
+        }
+
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.7);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal {
+            background-color: var(--dark-grey);
+            border-radius: 12px;
+            border: 1px solid var(--medium-grey);
+            width: 100%;
+            max-width: 500px;
+            padding: 30px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+            transform: translateY(20px);
+            transition: all 0.3s ease;
+        }
+
+        .modal-overlay.active .modal {
+            transform: translateY(0);
+        }
+
+        .modal-header {
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid var(--medium-grey);
+        }
+
+        .modal-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+
+        .modal-close {
+            background: none;
+            border: none;
+            color: var(--lighter-grey);
+            font-size: 1.2rem;
+            cursor: pointer;
+            position: absolute;
+            top: 15px;
+            right: 15px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--lighter-grey);
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            background-color: var(--black);
+            border: 1px solid var(--medium-grey);
+            border-radius: 6px;
+            color: var(--white);
+            font-size: 0.95rem;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--light-grey);
+        }
+
+        .modal-footer {
+            margin-top: 30px;
+            display: flex;
+            justify-content: flex-end;
+            gap: 15px;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 1rem;
+            }
+            
+            .employee-info {
+                grid-template-columns: 1fr;
+            }
+            
+            .task-actions {
+                flex-direction: column;
+                width: 100%;
+            }
+            
+            .task-btn {
+                width: 100%;
+            }
+        }
+ */
+
+/* --- Color Variables (from your theme) --- */
+:root {
+    --black: #111827;
+    --dark-grey: #1f2937;
+    --medium-grey: #374151;
+    --light-grey: #6b7280;
+    --lighter-grey: #9ca3af;
+    --lightest-grey: #e5e7eb;
+    --white: #f9fafb;
+    --accent: #ffffff; /* Used for highlights */
+    --success-green: #10b981; /* For active status/success actions */
+    --primary-blue: #3b82f6; /* A subtle blue for primary actions/highlights */
+    --warning-orange: #f59e0b; /* For pending/in-progress tasks */
+    --danger-red: #ef4444; /* For overdue tasks */
+}
+
+/* --- Base Styles --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+body {
+    /* background-color: var(--black); */
+    color: var(--white);
+    min-height: 100vh;
+}
+
+/* --- Main Wrapper & Container --- */
+.employee-portal-wrapper {
+    padding: 2rem; /* Overall padding around the entire component */
+}
+
+.employee-task-container {
+    max-width: 1200px; /* Consistent max-width */
+    margin: 0 auto;
+    /* background-color: var(--dark-grey); */
+    border-radius: 12px;
+    border: 1px solid var(--medium-grey);
+    padding: 30px;
+    /* box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3); */
+    box-shadow: 0 8px 30px rgba(177, 173, 173, 0.3);
+    animation: fadeIn 0.5s ease-out forwards; /* Fade in animation for the whole container */
+}
+
+/* --- Employee Header Section --- */
+.employee-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 40px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--medium-grey);
+}
+
+.employee-info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Responsive grid for info items */
+    gap: 20px;
+    flex-grow: 1; /* Allow grid to take available space */
+}
+
+.info-item {
+    /* background-color: var(--black); */
+    border-radius: 8px;
+    border: 1px solid var(--medium-grey);
+    padding: 15px;
+    transition: all 0.2s ease;
+}
+
+.info-item:hover {
+    border-color: var(--light-grey);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.info-label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 500;
+    color: var(--lighter-grey);
+    font-size: 0.9rem;
+}
+
+.info-value {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--white);
+}
+
+.logout-btn {
+    /* background-color: var(--medium-grey); */
+    background: linear-gradient(grey,gray);
+    color: var(--white);
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 1rem;
+    margin-left: 30px; /* Space from info grid */
+    flex-shrink: 0; /* Prevent shrinking */
+}
+
+.logout-btn:hover {
+    background-color: var(--light-grey);
+    transform: translateY(-2px);
+}
+
+/* --- Tasks Section --- */
+.tasks-section {
+    padding-top: 10px;
+}
+
+.section-title {
+    font-size: 2rem;
+    font-weight: 600;
+    margin-bottom: 25px;
+    color: var(--white);
+    text-align: center;
+}
+
+.task-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Responsive grid for tasks */
+    gap: 25px;
+}
+
+.task-card {
+    /* background-color: var(--black); */
+    border-radius: 12px;
+    border: 1px solid var(--medium-grey);
+    padding: 20px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+    cursor: pointer; /* Indicate clickable */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Push footer to bottom */
+}
+
+.task-card:hover {
+    transform: translateY(-5px); /* Lift effect on hover */
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    border-color: var(--primary-blue); /* Highlight border on hover */
+}
+
+.task-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 15px;
+}
+
+.task-title {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: var(--white);
+    margin-right: 10px; /* Space for status badge */
+    flex-grow: 1;
+}
+
+.task-status {
+    display: inline-block;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: capitalize;
+    flex-shrink: 0; /* Prevent shrinking */
+}
+
+/* Status specific colors */
+.status-completed {
+    background-color: rgba(16, 185, 129, 0.15); /* success-green */
+    color: var(--success-green);
+}
+
+.status-pending {
+    background-color: rgba(245, 158, 11, 0.15); /* warning-orange */
+    color: var(--warning-orange);
+}
+
+.status-overdue {
+    background-color: rgba(239, 68, 68, 0.15); /* danger-red */
+    color: var(--danger-red);
+}
+
+.status-in-progress{
+    background-color: rgba(59, 130, 246, 0.15);
+    color: var(--primary-blue);
+}
+
+.task-description {
+    color: var(--lighter-grey);
+    font-size: 0.95rem;
+    line-height: 1.5;
+    margin-bottom: 20px;
+    flex-grow: 1; /* Allow description to take space */
+}
+
+.task-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 15px;
+    border-top: 1px solid var(--medium-grey);
+    margin-top: auto; /* Pushes footer to the bottom */
+}
+
+.task-date {
+    font-size: 0.9rem;
+    color: var(--light-grey);
+    font-weight: 500;
+}
+
+.complete-btn {
+    background-color: var(--primary-blue);
+    color: var(--white);
+    border: none;
+    padding: 8px 15px;
+    border-radius: 8px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 0.9rem;
+}
+
+.complete-btn:hover {
+    background-color: #2563eb; /* Darker blue on hover */
+    transform: translateY(-2px);
+}
+
+.no-tasks-message {
+    text-align: center;
+    color: var(--lighter-grey);
+    padding: 50px;
+    font-size: 1.1rem;
+    font-style: italic;
+    /* background-color: var(--black); */
+    border-radius: 12px;
+    border: 1px solid var(--medium-grey);
+}
+
+/* --- Loading State --- */
+.loading-container, .error-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 80vh;
+    text-align: center;
+    padding: 2rem;
+}
+
+.spinner {
+    border: 4px solid rgba(255, 255, 255, 0.3);
+    border-top: 4px solid var(--primary-blue);
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 1s linear infinite;
+    margin-bottom: 20px;
+}
+
+.loading-text, .error-message {
+    font-size: 1.2rem;
+    color: var(--lighter-grey);
+    margin-bottom: 20px;
+}
+
+.back-home-btn {
+    background-color: var(--medium-grey) !important;
+    border-color: var(--medium-grey) !important;
+    color: var(--white) !important;
+    padding: 12px 25px;
+    border-radius: 8px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.back-home-btn:hover {
+    background-color: var(--light-grey) !important;
+    border-color: var(--light-grey) !important;
+    transform: translateY(-2px);
+}
+
+/* --- Task Detail Modal --- */
+.custom-modal .modal-content {
+    background-color: var(--dark-grey);
+    border: 1px solid var(--medium-grey);
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+}
+
+.modal-header {
+    border-bottom: 1px solid var(--medium-grey);
+    padding: 15px 25px;
+}
+
+.modal-title {
+    /* color: var(--white); */
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.modal-header .btn-close {
+    filter: invert(1); /* Makes the close button white */
+    opacity: 0.7;
+}
+
+.modal-header .btn-close:hover {
+    opacity: 1;
+}
+
+.modal-body {
+    padding: 25px;
+}
+
+.modal-info-group {
+    margin-bottom: 20px;
+}
+
+.modal-info-label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+    /* color: var(--lighter-grey); */
+    font-size: 0.95rem;
+}
+
+.modal-info-value {
+    font-size: 1rem;
+    /* color: var(--white); */
+    line-height: 1.6;
+}
+
+/* Status colors within modal */
+.modal-info-value.status-completed { color: var(--success-green); font-weight: 600; }
+.modal-info-value.status-pending { color: var(--warning-orange); font-weight: 600; }
+.modal-info-value.status-overdue { color: var(--danger-red); font-weight: 600; }
+
+
+.modal-footer {
+    border-top: 1px solid var(--medium-grey);
+    padding: 15px 25px;
+    justify-content: flex-end;
+}
+
+.modal-complete-btn {
+    background-color: var(--success-green) !important;
+    border-color: var(--success-green) !important;
+    color: var(--black) !important; /* Black text on green button */
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: all 0.2s ease;
+}
+
+.modal-complete-btn:hover {
+    background-color: #0e9f6e !important; /* Darker green on hover */
+    border-color: #0e9f6e !important;
+}
+
+.modal-close-btn {
+    background-color: var(--medium-grey) !important;
+    border-color: var(--medium-grey) !important;
+    color: var(--white) !important;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
+
+.modal-close-btn:hover {
+    background-color: var(--light-grey) !important;
+    border-color: var(--light-grey) !important;
+}
+
+/* --- Animations --- */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* --- Responsive Styles --- */
+@media (max-width: 992px) {
+    .employee-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 20px;
+    }
+    .employee-info-grid {
+        width: 100%;
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    }
+    .logout-btn {
+        margin-left: 0;
+        width: 100%;
+    }
+    .task-grid {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    }
+}
+
+@media (max-width: 768px) {
+    .employee-portal-wrapper {
+        padding: 1rem;
+    }
+    .employee-task-container {
+        padding: 20px;
+    }
+    .section-title {
+        font-size: 1.8rem;
+    }
+    .task-grid {
+        grid-template-columns: 1fr; /* Stack tasks on small screens */
+    }
+    .task-card {
+        padding: 15px;
+    }
+    .task-title {
+        font-size: 1.2rem;
+    }
+    .task-description {
+        font-size: 0.9rem;
+    }
+    .complete-btn {
+        font-size: 0.85rem;
+        padding: 6px 12px;
+    }
+}
+
+@media (max-width: 480px) {
+    .employee-info-grid {
+        grid-template-columns: 1fr; /* Stack info items on very small screens */
+    }
+    .info-item {
+        padding: 12px;
+    }
+    .info-value {
+        font-size: 1rem;
+    }
+    .modal-title {
+        font-size: 1.3rem;
+    }
+    .modal-body {
+        padding: 20px;
+    }
+    .modal-info-label {
+        font-size: 0.9rem;
+    }
+    .modal-info-value {
+        font-size: 0.95rem;
+    }
+    .modal-complete-btn, .modal-close-btn {
+        padding: 8px 15px;
+        font-size: 0.9rem;
+    }
+}

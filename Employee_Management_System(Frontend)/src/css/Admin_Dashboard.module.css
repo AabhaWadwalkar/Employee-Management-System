@@ -1,0 +1,75 @@
+.form-content {
+    padding: 30px;
+    flex-grow: 1;
+    padding-left: 24%;
+}
+
+.form-panel {
+    background-color: var(--dark-grey);
+    border-radius: 12px;
+    border: 1px solid var(--medium-grey);
+    padding: 25px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+    width: 50%;
+}
+
+.form-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 25px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid var(--medium-grey);
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+    color: var(--lighter-grey);
+}
+
+.form-label .required {
+    color: #ef4444;
+    margin-left: 3px;
+}
+
+.form-control {
+    width: 100%;
+    padding: 12px 15px;
+    background-color: var(--black);
+    border: 1px solid var(--medium-grey);
+    border-radius: 6px;
+    color: var(--white);
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+}
+
+.form-control:focus {
+    outline: none;
+    border-color: var(--light-grey);
+    box-shadow: 0 0 0 3px rgba(156, 163, 175, 0.1);
+}
+
+.form-control::placeholder {
+    color: var(--light-grey);
+}
+
+.btn-submit {
+    background-color: var(--medium-grey);
+    color: var(--white);
+    border: none;
+    padding: 12px 25px;
+    border-radius: 6px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 10px;
+}
+
+.btn-submit:hover {
+    background-color: var(--light-grey);
+}

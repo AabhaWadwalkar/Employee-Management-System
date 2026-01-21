@@ -1,0 +1,149 @@
+
+
+         :root {
+             --black: #111827;
+             --dark-grey: #1f2937;
+             --medium-grey: #374151;
+             --light-grey: #6b7280;
+             --lighter-grey: #9ca3af;
+             --lightest-grey: #e5e7eb;
+             --white: #f9fafb;
+             --accent: #ffffff;
+         }
+ 
+         * {
+             margin: 0;
+             padding: 0;
+             box-sizing: border-box;
+             font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+         }
+ 
+         body {
+             color: var(--white);
+             min-height: 100vh;
+            
+         }
+ 
+         .dashboard-container {
+             max-width: 1200px;
+             margin: 0 auto;
+             padding: 2rem;
+         }
+ 
+         .page-header {
+             margin-bottom: 2rem;
+             margin-top: 3rem;
+             text-align: center;
+             padding-bottom: 1rem;
+             border-bottom: 1px solid var(--medium-grey);
+         }
+ 
+         .page-title {
+             font-size: 4rem;
+             font-weight: 600;
+             margin-bottom: 0.5rem;
+         }
+ 
+         .page-subtitle {
+             color: var(--lighter-grey);
+             font-size: 1rem;
+         }
+ 
+         .auth-cards {
+             display: grid;
+             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+             gap: 1.5rem;
+             margin-top: 2rem;
+         }
+ 
+         .auth-card {
+            
+             border-radius: 0.75rem;
+             border: 1px solid var(--medium-grey);
+             padding: 2rem;
+             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+             transition: all 0.3s ease;
+         }
+ 
+         .auth-card:hover {
+            
+             transform: scale(1.05) translateY(-5px);
+             box-shadow: 0 8px 30px rgba(177, 173, 173, 0.3);
+         
+         }
+ 
+         .card-icon {
+             font-size: 2.5rem;
+             margin-bottom: 1rem;
+             color: var(--accent);
+         }
+ 
+         .card-title {
+             font-size: 1.5rem;
+             font-weight: 600;
+             margin-bottom: 0.5rem;
+         }
+ 
+         .card-description {
+             color: var(--lighter-grey);
+             margin-bottom: 1.5rem;
+             line-height: 1.6;
+         }
+ 
+         .btn {
+             display: inline-block;
+             padding: 0.75rem 1.5rem;
+             background: linear-gradient(grey,gray);
+             color: var(--white);
+             border: none;
+             border-radius: 0.5rem;
+             font-weight: 500;
+             text-decoration: none;
+             cursor: pointer;
+             transition: all 0.3s ease;
+             width: 100%;
+             text-align: center;
+         }
+ 
+         .btn:hover {
+             background-color: var(--light-grey);
+             transform: translateY(-2px);
+         }
+ 
+         .status-indicator {
+             display: inline-block;
+             width: 10px;
+             height: 10px;
+             border-radius: 50%;
+             margin-left: 0.5rem;
+         }
+ 
+         .status-active {
+             background-color: #10b981;
+             box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.3);
+         }
+ 
+         @keyframes fadeIn {
+             from { opacity: 0; transform: translateY(10px); }
+             to { opacity: 1; transform: translateY(0); }
+         }
+ 
+         .auth-card {
+             animation: fadeIn 0.5s ease forwards;
+         }
+ 
+         .auth-card:nth-child(1) { animation-delay: 0.1s; }
+         .auth-card:nth-child(2) { animation-delay: 0.2s; }
+         .auth-card:nth-child(3) { animation-delay: 0.3s; }
+ 
+         @media (max-width: 768px) {
+             .dashboard-container {
+                 padding: 1.5rem;
+             }
+             
+             .auth-cards {
+                 grid-template-columns: 1fr;
+             }
+         } 
+
+         
